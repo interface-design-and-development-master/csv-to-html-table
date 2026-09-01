@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+/*this is where we're storing our custom variables*/
+/*colours from randoma11y*/
+:root {
+    --colour-01: #ffc1fa;
+    --colour-02: #00411a;
+    --border: 0.25rem double var(--colour-02);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --colour-01: #00411a;
+        --colour-02: #ffc1fa;
+    }
+}
+
+body {
+    font-family: "Work Sans", sans-serif;
+    background-color: var(--colour-01);
+    color: var(--colour-02);
+    padding: 0 2rem;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+dialog[open] {
+    margin: auto;
+    background-color: var(--colour-02);
+    color: var(--colour-01);
+    border: var(--border);
+}
+
+dialog::backdrop {
+    background-color: #69696988;
+}
+
+input[type="file"] {
+    display: block;
+}

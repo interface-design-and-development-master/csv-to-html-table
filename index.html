@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CSV2HTMLtable</title>
+
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="table.css">
+
+    <script src="main.js" defer></script>
+</head>
+<body>
+
+    <dialog id="info-modal">
+        <h3>About:</h3>
+        <p>This is a small tool I built for RMIT Digital Design's Interface Design and Development specialisation.</p>
+        <p>
+            As part of the assignments you'll need to display your git commit history on your specialisation work
+            index page. Getting the information is pretty easy, you just need to run the following command in a
+            terminal opened in your git repository's folder:
+        </p>
+        <pre>git log --pretty=format:"%an,%ad,%s,%b" > commit_history.csv</pre>
+        <p>
+            In WebStorm I can right-click on my folder in the project pane, go to open in and then select terminal.
+        </p>
+        <p>
+            In VS Code I can go to my view menu and then select terminal.
+        </p>
+        <p>
+            Running the command will create a new file in your folder called "commit_history.csv" which you can
+            upload here to convert it to HTML.
+        </p>
+        <p>
+            You'll be able to preview the table here before downloading it as a text file, but note that the preview has
+            some CSS applied. You can download the CSS I've used for reference here:
+        </p>
+        <p>
+            <a href="./table.css" download>table.css</a>
+        </p>
+        <button id="info-close">close</button>
+    </dialog>
+
+    <header>
+        <h1>CSV 2 HTML table</h1>
+        <button id="info-open">About/Instructions</button>
+    </header>
+
+    <main>
+        <section>
+            <!-- note that we added the accept attribute to filter types of allowed files -->
+            <label for="file-input">Upload .csv file to convert to HTML table:</label>
+            <input type="file" name="CSV file input" id="file-input" accept=".csv">
+        </section>
+
+        <section id="output-section">
+            <div id="table-preview"></div>
+        </section>
+
+
+    </main>
+
+</body>
+</html>
