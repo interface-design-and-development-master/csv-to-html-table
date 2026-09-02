@@ -65,10 +65,12 @@ function convertCSVToTable(csvText){
     htmlTable += `    <thead><tr>\n\n`;
     // we don't have headers baked into our CSV's so we'll create some boilerplate ones to change later. we do however
     // need to know how many fields we have, so I'll split the first line into its individual fields and count them
-    let headerFields = csvTextLines[0].split(",").length;
+    // let headerFields = csvTextLines[0].split(",").length;
+    // changed this to a static number to account for body overflow
+    let headerFields = 4;
     // once we know how many, we use that to add the headers through a for loop
     // this will add the headings from the above array in order, then if i runs out a fallback
-    for(let i = 0; i <headerFields; i++){
+    for(let i = 0; i < 4; i++){
         if(expectedHeadings[i]){
             htmlTable += `        <th>${expectedHeadings[i]}</th>\n`;
         } else {
@@ -92,9 +94,23 @@ function convertCSVToTable(csvText){
         const lineValues = line.split(",");
         // open row element
         htmlTable += `      <tr>\n\n`;
-        // again for loop, this time on field values per line
+        // we want a loop, but we also know that the body is likely to contain , : so we add everything beyond 4 together
+        for(let i = 0; i < headerFields; i++){
+            // this first case will catch the last run
+            if(i === 3){
+                let bodyCompilation = lineValues[i];
+                for(let x = i + 1; x < lineValues.length; x++){
+                    if(lineValues[x]) {
+                        bodyCompilation += ", " + lineValues[x];
+                    }
+                }
+                htmlTable += `        <td>${bodyCompilation}</td>\n`;
+            } else {
+                htmlTable += `        <td>${lineValues[i]}</td>\n`;
+            }
+        }
         lineValues.forEach((value) => {
-            htmlTable += `        <td>${value}</td>\n`;
+
         });
         // close row element
         htmlTable += `\n`;
@@ -127,5 +143,3 @@ function createDownloadLink(htmlTable) {
     // finally add to our DOM in our main element
     inputSectionElement.appendChild(newLink);
 }
-
-console.log();
