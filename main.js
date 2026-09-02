@@ -64,7 +64,7 @@ function convertCSVToTable(csvText){
     }
     // add new line break after headers, then close tags
     htmlTable += `\n`;
-    htmlTable += `    </thead></tr>\n\n`;
+    htmlTable += `    </tr></thead>\n\n`;
     // ok now we want to insert our actual information
     // we work with much the same logical as above, going row by row, cell by cell
     htmlTable += `    <tbody>\n\n`;
