@@ -53,7 +53,8 @@ const expectedHeadings = [
 // this is a pretty manual way to do it but will work
 function convertCSVToTable(csvText){
     // this splits our csv into an array of individual lines : uncomment the console to check it out
-    const csvTextLines = csvText.split(/\r?\n/);
+    // we also need to run it in reverse so it goes old => new
+    const csvTextLines = csvText.split(/\r?\n/).reverse();
     // console.log(csvTextLines);
     // here we begin the html we will eventually return : we're saving it as a string, using the `` rather than "" or ''
     // so we can put it over multiple lines : you'll notice all the strings end with /n : this is to say, go to a new
