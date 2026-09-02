@@ -5,7 +5,7 @@ const infoOpen = document.getElementById("info-open");
 
 const fileSelector = document.getElementById("file-input");
 const tablePreview = document.getElementById("table-preview");
-const outputSectionElement = document.getElementById("output-section");
+const inputSectionElement = document.getElementById("input-section");
 
 //// modal logic
 infoClose.addEventListener("click", (e) => {
@@ -119,11 +119,13 @@ function createDownloadLink(htmlTable) {
     const newLink = document.createElement("a");
     // add file to href as URL created from the blob
     newLink.href = URL.createObjectURL(htmlTableFile);
-    // give the download a name
-    newLink.download = "myHTMLTable.txt";
+    // give the download a name with date
+    newLink.download = `myHTMLTable_${Temporal.Now.plainDateTimeISO(Temporal.Now.timeZoneId())}.txt`;
     newLink.innerText = "Download table as txt file";
     // then add id so we can replace if needed
     newLink.id = "table-download";
     // finally add to our DOM in our main element
-    outputSectionElement.appendChild(newLink);
+    inputSectionElement.appendChild(newLink);
 }
+
+console.log();
