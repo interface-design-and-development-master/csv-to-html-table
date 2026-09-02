@@ -42,6 +42,14 @@ function fileInput(e){
 
 fileSelector.addEventListener("change", fileInput);
 
+// this is an array containing a list of expected headings
+const expectedHeadings = [
+    "Author",
+    "Date",
+    "Subject",
+    "Body"
+]
+
 // this is a pretty manual way to do it but will work
 function convertCSVToTable(csvText){
     // this splits our csv into an array of individual lines : uncomment the console to check it out
@@ -59,8 +67,14 @@ function convertCSVToTable(csvText){
     // need to know how many fields we have, so I'll split the first line into its individual fields and count them
     let headerFields = csvTextLines[0].split(",").length;
     // once we know how many, we use that to add the headers through a for loop
+    // this will add the headings from the above array in order, then if i runs out a fallback
     for(let i = 0; i <headerFields; i++){
-        htmlTable += `        <th>header${i}</th>\n`;
+        if(expectedHeadings[i]){
+            htmlTable += `        <th>${expectedHeadings[i]}</th>\n`;
+        } else {
+            htmlTable += `        <th>header${i}</th>\n`;
+        }
+
     }
     // add new line break after headers, then close tags
     htmlTable += `\n`;
